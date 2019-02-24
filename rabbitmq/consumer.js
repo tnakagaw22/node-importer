@@ -27,11 +27,11 @@ module.exports = class Consumer {
                 // noAck: false -> message will be requeued if not acknowledged
                 ok = ok.then(function (_qok) {
                   return channel.consume(queueName, function (msg) {
-                    console.log(" [x] Received '%s'", msg.content.toString());
+                    // console.log(" [x] Received '%s'", msg.content.toString());
             
                     // do some processing and let mq know message is ready to be deleted
                     channel.ack(msg);
-                    doWork(msg);
+                    doWork(JSON.parse(msg.content));
 
                   }, { noAck: false });
                 });

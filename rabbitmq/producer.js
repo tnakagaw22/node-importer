@@ -28,8 +28,8 @@ const publish = async (message) => {
 
     var ok = await channel.assertQueue(q, { durable: false });
     if (ok) {
-        channel.sendToQueue(q, Buffer.from(msg));
-        console.log(" [x] Sent '%s'", msg);
+        channel.sendToQueue(q, new Buffer(JSON.stringify(message)));
+        console.log(" [x] Sent '%s'", message.length);
 
         channel.close();
     }

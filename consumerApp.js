@@ -3,6 +3,8 @@ var { mongoose } = require('./db/mongoose');
 const { Listing } = require('./db/models/listing');
 
 let work = (message) => {
+    console.log(message);
+
     let listing = new Listing({
         listingKey: "OLRS-1358658",
         webId: "1358658",
@@ -21,9 +23,9 @@ let work = (message) => {
     });
 
     listing.save().then((doc) => {
-        console.log("new listing created : " + doc);
+        // console.log("new listing created : " + doc);
     })
-    console.log('consuming : ' + message);
+    // console.log('consuming : ' + message);
 }
 
 let consumer = new Consumer();
